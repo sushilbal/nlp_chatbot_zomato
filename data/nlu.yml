@@ -1,7 +1,5 @@
 version: "2.0"
-
 nlu:
-
 - intent: greet
   examples: |
     - hey
@@ -18,10 +16,9 @@ nlu:
     - goodevening
     - good afternoon
     - hola
-
+    - Hi
 - intent: goodbye
   examples: |
-    - good afternoon
     - cu
     - good by
     - cee you later
@@ -35,7 +32,7 @@ nlu:
     - bye bye
     - see you later
     - by
-
+    - high
 - intent: affirm
   examples: |
     - yes
@@ -44,7 +41,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-
 - intent: deny
   examples: |
     - no
@@ -54,7 +50,6 @@ nlu:
     - don't like that
     - no way
     - not really
-
 - intent: restaurant_search
   examples: |
     - i'm looking for a place to eat
@@ -65,8 +60,8 @@ nlu:
     - I am looking for some restaurants in [New Delhi] {"entity": "location" , "value":"Delhi"}.
     - I am looking for some restaurants in [Calcutta] {"entity": "location" , "value":"kolkata"}.
     - I am looking for some restaurants in [Kolkata] {"entity": "location" , "value":"kolkata"}.
-    - I am looking for some restaurants in [Bangalore]{"entity": "location","value":"bangalore"}
-    - I am looking for some restaurants in [Bengaluru]{"entity": "location","value":"bangalore"}
+    - I am looking for some restaurants in [Bangalore]{"entity": "location", "value": "bangalore"}
+    - I am looking for some restaurants in [Bengaluru]{"entity": "location", "value": "bangalore"}
     - show me [chinese](cuisine) restaurants
     - show me [chines]{"entity": "cuisine", "value": "chinese"} restaurants in the [New Delhi]{"entity": "location", "value": "Delhi"}
     - show me a [mexican](cuisine) place in the [centre](location)
@@ -97,61 +92,54 @@ nlu:
     - [delhi](location)
     - please find me a restaurant in [ahmedabad](location)
     - please show me a few [italian](cuisine) restaurants in [bangalore](location)
- 
+    - suggest me some restaurants in [bhubaneswar](location)
+    - [South Indian](cuisine)
 - intent: bot_challenge
   examples: |
     - are you a bot?
-    - are you a human?
+    - are you a human?s
     - am I talking to a bot?
     - am I talking to a human?
-
 - intent: email_id
   examples: |
-    - my email is 
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
-
-- synonym: 4
-  examples: |
-    - four
-
-- synonym: Delhi
-  examples: |
-    - New Delhi
-    - Dili
-    - Deli
-
-- synonym: kolkata
-  examples: |
-    - Kolkata
-    - Calcutta
-    
-
+    - my email is [xyz@email.com](emailid)
+    - [abc@sss.com](emailid)
+    - please send me at [this@email.com](emailid)
 - synonym: bangalore
   examples: |
+    - Bangalore
     - Bengaluru
-
 - synonym: chinese
   examples: |
     - chines
     - Chinese
     - Chines
-
+- synonym: Delhi
+  examples: |
+    - New Delhi
+    - Dili
+    - Deli
 - synonym: mid
   examples: |
     - moderate
     - medium range
-
+- synonym: '4'
+  examples: |
+    - four
+- synonym: chennai
+  examples: |
+    - Madras
+- synonym: kolkata
+  examples: |
+    - Kolkata
+    - Calcutta
 - synonym: vegetarian
   examples: |
     - veggie
     - vegg
-
 - regex: greet
   examples: |
     - hey[^\s]*
-
 - regex: pincode
   examples: |
     - [0-9]{6}

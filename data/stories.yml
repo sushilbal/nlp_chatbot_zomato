@@ -2,10 +2,59 @@ version: "2.0"
 
 stories:
 
-- story: happy path
+- story: restaurant search
   steps:
   - intent: greet
   - action: utter_greet
   - intent: restaurant_search
+  - action: utter_ask_location
+  - intent: inform
+    entities:
+      - location: "Delhi"
+  - action: action_check_location
+  - slot_was_set:
+      - check_op: True
+  - action: utter_ask_cuisine
+  - intent: inform
+    entities:
+      - cuisine: "chinese"
+  - action: utter_ask_budget
+  - intent: inform
+    entities:
+      - budget: "300"
+  - action: utter_on_it 
+  - action: action_search_restaurants
+  - action: utter_ask_sent_email
+  - intent: deny
+  - action: utter_done
+  - action: utter_goodbye
 
 
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: bhubaneswar
+  - slot_was_set:
+    - location: bhubaneswar
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: South Indian
+  - slot_was_set:
+    - cuisine: South Indian
+  - action: utter_ask_budget
+  - intent: restaurant_search
+    entities:
+    - budget: high
+  - slot_was_set:
+    - budget: high
+  - action: action_search_restaurants
+  - action: utter_ask_sent_email
+  - intent: deny
+  - action: utter_done
+  - action: utter_ask_location
+  - action: utter_goodbye
+  - action: action_restart
