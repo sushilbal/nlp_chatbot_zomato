@@ -1,27 +1,33 @@
 version: "2.0"
 
 actions:
-- action_search_restaurants
-- action_check_location
-- utter_ask_cuisine
-- utter_ask_howcanhelp
-- utter_ask_location
-- utter_goodbye
-- utter_greet
-- utter_default
+  - action_search_restaurants
+  - action_check_location
 
 entities:
-- cuisine
-- location
-- people
-- budget
+  - cuisine
+  - location
+  - budget
+  - emailid
 
 intents:
-- greet
-- restaurant_search
-- affirm
-- goodbye
-- stop
+  - greet
+  - restaurant_search
+  - affirm
+  - goodbye
+  - stop
+  - sent_email
+
+slots:
+  cuisine:
+    type: text
+  location:
+    type: text
+  budget:
+    type: float
+  emailid:
+    type: text
+
 
 responses:
   utter_greet:
@@ -110,12 +116,3 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 
-
-
-slots:
-cuisine:
-type: text
-location:
-type: text
-check_op:
-type: bool

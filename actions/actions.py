@@ -40,19 +40,23 @@ class ActionSearchRestaurants(Action):
 		return 'action_search_restaurants'
 		
 	def run(self, dispatcher, tracker, domain):
-		config={ "user_key":"f4924dc9ad672ee8c4f8c84743301af5"}
+		config={ "user_key":"b3db63b6e0673d4c8437c62ed4ea2a0f"}
 		#config = {'user_key':"455c41499144739a6f131347a8130495"}
 		zomato = zomatopy.initialize_app(config)
 		loc = tracker.get_slot('location')
 		cuisine = tracker.get_slot('cuisine')
-        buget = tracker.get_slot('cuisine')
+        buget = tracker.get_slot('budget')
 		location_detail=zomato.get_location(loc, 1)
 		d1 = json.loads(location_detail)
 		lat=d1["location_suggestions"][0]["latitude"]
 		lon=d1["location_suggestions"][0]["longitude"]
 		cuisines_dict={'chinese':25,'italian':55,'north indian':50,'south indian':85,'american':1}
-		results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 5)
+		results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 20)
 		d = json.loads(results)
+		print(f' Budget for 2 ={budget}')
+		print(f'Cusisine = {cuisine}') 
+		print(f'location = {loc}')
+		#result_by_price=[r for r in d['restaurants'] if r['restaurant']['average_cost_for_two'] < budget]
 		response=""
 		if d['results_found'] == 0:
 			response= "no results"
