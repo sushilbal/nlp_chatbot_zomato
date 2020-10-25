@@ -8,15 +8,15 @@ nlu:
     - hello there
     - good morning
     - good evening
-    - moin
     - hey there
     - let's go
     - hey dude
-    - goodmorning
-    - goodevening
+    - good morning
+    - good evening
     - good afternoon
     - hola
     - Hi
+    - mid
 - intent: goodbye
   examples: |
     - cu
@@ -32,7 +32,6 @@ nlu:
     - bye bye
     - see you later
     - by
-    - high
 - intent: affirm
   examples: |
     - yes
@@ -52,6 +51,12 @@ nlu:
     - not really
 - intent: restaurant_search
   examples: |
+    - In the [mid](budget) range
+    - In the [low](budget) range
+    - In the [high](budget) range
+    - [mid](budget)
+    - [low](budget)
+    - [high](budget)
     - i'm looking for a place to eat
     - I want to grab lunch
     - I am searching for a dinner spot
@@ -93,18 +98,23 @@ nlu:
     - please find me a restaurant in [ahmedabad](location)
     - please show me a few [italian](cuisine) restaurants in [bangalore](location)
     - suggest me some restaurants in [bhubaneswar](location)
-    - [South Indian](cuisine)
+    - looking for some restaurantd
+    - [bhubaneswar](location)
+    - find me restaurants in [bangalore](location)
+    - [Chinese]{"entity": "cuisine", "value": "chinese"}
+    - [low](budget)
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?s
     - am I talking to a bot?
     - am I talking to a human?
-- intent: email_id
+- intent: sent_email
   examples: |
     - my email is [xyz@email.com](emailid)
     - [abc@sss.com](emailid)
     - please send me at [this@email.com](emailid)
+    - [sushilk.bal@gmail.com](emailid)
 - synonym: bangalore
   examples: |
     - Bangalore

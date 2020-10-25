@@ -8,25 +8,30 @@ stories:
   - action: utter_greet
   - intent: restaurant_search
   - action: utter_ask_location
-  - intent: inform
+  - intent: restaurant_search
     entities:
       - location: "Delhi"
+  - slot_was_set:
+    - location: Delhi
   - action: action_check_location
   - slot_was_set:
       - check_op: True
   - action: utter_ask_cuisine
-  - intent: inform
+  - intent: restaurant_search
     entities:
       - cuisine: "chinese"
+  - slot_was_set:
+    - cuisine: "chinese"
   - action: utter_ask_budget
-  - intent: inform
+  - intent: restaurant_search
     entities:
-      - budget: "300"
+      - budget: "low"
+  - slot_was_set:
+    - budget: "low"
   - action: utter_on_it 
   - action: action_search_restaurants
   - action: utter_ask_sent_email
   - intent: deny
-  - action: utter_done
   - action: utter_goodbye
 
 
@@ -39,6 +44,9 @@ stories:
     - location: bhubaneswar
   - slot_was_set:
     - location: bhubaneswar
+  - action: action_check_location
+  - slot_was_set:
+      - check_op: True
   - action: utter_ask_cuisine
   - intent: restaurant_search
     entities:
@@ -53,8 +61,70 @@ stories:
     - budget: high
   - action: action_search_restaurants
   - action: utter_ask_sent_email
-  - intent: deny
+  - intent: affirm
+  - action: action_send_email
   - action: utter_done
+  
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
   - action: utter_ask_location
+  - intent: restaurant_search
+    entities:
+    - location: bhubaneswar
+  - slot_was_set:
+    - location: bhubaneswar
+  - action: action_check_location
+  - slot_was_set:
+      - check_op: True
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_budget
+  - intent: greet
+  - action: action_search_restaurants
+  - slot_was_set:
+    - response: "Found Moody Blues in Triplex, Gajapati Nagar, Bhubaneshwar\nFound Silver Streak in Ground Floor, BMC Bhawani Mall, Sahid Nagar, Bhubaneshwar\nFound Aangan Horizon in Above Patia Pantaloons, Nandankanan Road, Patia, Bhubaneshwar\nFound SMOG Resto Cafe in Plot 4706/5851, Near Sainik School Chowk, Gajapati Nagar, Bhubaneshwar\nFound Wok On in 516/1761/3851, KIIT University Road, Aryapalli, Patia, Bhubaneswar\nFound Mainland China in The Crown, A1, Near IRC Village, Nayapalli, Bhubaneshwar\nFound Chai Break in KIIT Road, PS Plaza, Patia, Bhubaneshwar\nFound The Living Room - The Presidency in The Presidency, 1471/A, Near Iskon Temple, Nayapalli, Bhubaneshwar\nFound Greenfield Bar in NH 5, Kesora, Rasulgarh, Bhubaneshwar\nFound Adda Unplugged in 3rd Floor,MRLA Complex,Patia,Bhubaneswar,751024\nFound Upre Kitchen & Cafe in 3rd Floor, G-51, Near IOCL Office, Chandrasekharpur, Bhubaneshwar\nFound Adda Unplugged in Above Reliance Fresh, Near ITER College, Jagmohan Nagar, Bhubaneshwar\nFound Taste Of China in 142, Near Water Tank Lane, Bapuji Nagar, Bhubaneshwar\nFound Chhapan Bhog in N6/317, Jayadev Vihar, Bhubaneshwar\nFound Taste Of China in 139, District Center, Chandrasekharpur, Bhubaneshwar\nFound Curry Leaf The Kitchen in First Floor, OEU Tower, KIIT Road, Patia, Bhubaneswar\nFound Malva Restaurant in Ground Floor, Expo Towers, Nandankanan Road, KIIT, Patia, Bhubaneshwar\nFound Charcoal in House 16, COSMO Estate, Infront Of Nageswar Residency Apartment, Nandanvihar, Patia, Bhubaneshwar\nFound Truptee Restaurant in 157, Hotel Padma Complex, Kalpana Square, Lakshmi Sagar, Bhubaneswar\nFound Golden Bird - Hotel Pushpak in Hotel Pushpak, 68, Budha Nagar, Kalpana Square, Bhubaneshwar\n"
+  - action: utter_ask_sent_email
+  - intent: affirm
+  - action: utter_done
   - action: utter_goodbye
-  - action: action_restart
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: restaurant_search
+    entities:
+    - location: bangalore
+  - slot_was_set:
+    - location: bangalore
+  - action: action_check_location
+  - action: utter_ask_cuisine
+  - intent: restaurant_search
+    entities:
+    - cuisine: chinese
+  - slot_was_set:
+    - cuisine: chinese
+  - action: utter_ask_budget
+  - intent: restaurant_search
+    entities:
+    - budget: low
+  - slot_was_set:
+    - budget: low
+  - action: action_search_restaurants
+  - slot_was_set:
+    - response: "Found Truffles in 28, 4th B Cross, Koramangala 5th Block, Bangalore\nFound Communiti in 67 & 68, Brigade Solitaire, Opposite Advaith Hyundai, Residency Road, Bangalore\nFound Burma Burma in 607, Ground Floor, 12th Main, Hal 2nd Stage, Indiranagar, Bangalore\nFound Windmills Craftworks in 331, EPIP Area, Road 5B, Near KTPO, Whitefield, Bangalore\nFound AB's - Absolute Barbecues in 90/4, 3rd Floor, Outer Ring Road, Munnekollaly Village, Marathahalli, Bangalore\nFound Yauatcha in Level 5, 1 MG Lido Mall, MG Road, Bangalore\nFound AB's - Absolute Barbecues in 100 Feet Road, 1st Phase, Near Jayadeva Flyover, 2nd Stage, BTM, Bangalore\nFound Momo-Domo in 165/161/139/8/1­12, Nyanapanahalli Village, Begur Hobli, BBMP, Bommanahalli, Bangalore\nFound Brahma Brews in Opposite Brigade Palm Springs, 24th Main, 7th Phase, JP Nagar, Bangalore\nFound The Fatty Bao - Asian Gastro Bar in 610, 3rd Floor, 12th Main, Off 80 Feet Road, Indiranagar, Bangalore\nFound Fenny's Lounge And Kitchen in 115, 3rd Floor, Opposite Raheja Arcade, Koramangala 7th Block, Bangalore\nFound Portland Steakhouse & Cafe in 1, Brunton Road, 1st Cross, Ashok Nagar, MG Road, Bangalore\nFound Phobidden Fruit in 965, 12th Main, HAL 2nd Stage, Off 100 Feet Road, Indiranagar, Bangalore\nFound Hae Kum Gang in 20, Pauls Castle, Castle Street, Ashok Nagar, Brigade Road, Bangalore\nFound JW Kitchen - JW Marriott Bengaluru in JW Marriott, 24/1, Vittal Mallya Road, Lavelle Road, Bangalore\nFound The Terrace at Gilly's Redefined in 413, 100 Feet Road, Beside E-Zone, Koramangala 4th Block, Bangalore\nFound XOOX Brewmill in 8, Industrial Layout, Near HDFC Bank, Koramangala 5th Block, Bangalore\nFound Smoke House Deli in Plot 1209, Ward 72, HAL 2nd Stage, Doopanahalli, Indiranagar, Bangalore\nFound The Pump House in 607, 15th Cross, Outer Ring Road, 1st Phase, JP Nagar, Bangalore\nFound Roots in 43/A, 1st Main, Jakkasandra Road,  Near Wipro Park, Koramangala 1st Block, Bangalore\n"
+  - action: utter_ask_sent_email
+  - intent: sent_email
+    entities:
+    - emailid: sushilk.bal@gmail.com
+  - slot_was_set:
+    - emailid: sushilk.bal@gmail.com
+  - action: utter_goodbye

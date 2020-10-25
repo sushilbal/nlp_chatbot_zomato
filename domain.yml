@@ -3,12 +3,11 @@ session_config:
   carry_over_slots_to_new_session: true
 intents:
 - greet
-- goodbye
-- restaurant_search
-- deny
-- affirm
-- stop
 - sent_email
+- restaurant_search
+- affirm
+- goodbye
+- deny
 entities:
 - budget
 - cuisine
@@ -17,9 +16,6 @@ entities:
 slots:
   budget:
     type: text
-    influence_conversation: true
-  check_op:
-    type: bool
     influence_conversation: true
   cuisine:
     type: text
@@ -110,6 +106,7 @@ responses:
 actions:
 - action_check_location
 - action_search_restaurants
+- action_send_email
 - utter_ask_budget
 - utter_ask_cuisine
 - utter_ask_location
