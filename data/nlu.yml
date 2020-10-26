@@ -11,12 +11,11 @@ nlu:
     - hey there
     - let's go
     - hey dude
-    - good morning
-    - good evening
     - good afternoon
     - hola
     - Hi
     - mid
+    - [mid](budget)
 - intent: goodbye
   examples: |
     - cu
@@ -101,8 +100,27 @@ nlu:
     - looking for some restaurantd
     - [bhubaneswar](location)
     - find me restaurants in [bangalore](location)
-    - [Chinese]{"entity": "cuisine", "value": "chinese"}
-    - [low](budget)
+    - find me restaurants in [delhi](location)
+    - find me restaurants in [mumbai](location)
+    - [American](cuisine)
+    - find me a restaurant
+    - find a restaurant
+    - restaurant
+    - [nagpur](location)
+    - find restaurants
+    - [medium]{"entity": "budget", "value": "mid"} range
+    - [virar]{"entity": "location", "value": "Vasai-Virar City"}
+    - [baroda]{"entity": "location", "value": "Vadodara"}
+    - [Allahabad]{"entity": "location", "value": "Prayagraj"}
+    - [steel city]{"entity": "location", "value": "Bokaro Steel City"}
+    - [Bokaro]{"entity": "location", "value": "Bokaro Steel City"}
+    - [Hubli]{"entity": "location", "value": "Hubli\u2013Dharwad"}
+    - [Dharwad]{"entity": "location", "value": "Hubli\u2013Dharwad"}
+    - [chandigarh](location)
+    - restaurants
+    - [kanpur](location)
+    - [chinese](cuisine) restaurants in [delhi](location)
+    - [high](budget)
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -115,6 +133,10 @@ nlu:
     - [abc@sss.com](emailid)
     - please send me at [this@email.com](emailid)
     - [sushilk.bal@gmail.com](emailid)
+    - please sned the mail at [sushilk.bal@gmail.com](emailid)
+    - please do send me at [sushilk.bal@gmail.com](emailid)
+    - [sbs@gmail.com](emailid)
+    - please do send me at [sbc@gmail.com](emailid)
 - synonym: bangalore
   examples: |
     - Bangalore
@@ -132,10 +154,32 @@ nlu:
 - synonym: mid
   examples: |
     - moderate
+    - medium
     - medium range
 - synonym: '4'
   examples: |
     - four
+- synonym: Vasai-Virar City
+  examples: |
+    - virar
+    - vasai-virar
+    - virar city
+- synonym: Vadodara
+  examples: |
+    - baroda
+- synonym: Prayagraj
+  examples: |
+    - Allahabad
+- synonym: Bokaro Steel City
+  examples: |
+    - steel city
+    - Bokaro
+    - Steel City
+- synonym: Hubli–Dharwad
+  examples: |
+    - Hubli
+    - Dharwad
+    - dharwad
 - synonym: chennai
   examples: |
     - Madras
