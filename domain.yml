@@ -2,11 +2,11 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- goodbye
-- greet
-- sent_email
 - restaurant_search
 - deny
+- sent_email
+- greet
+- goodbye
 - affirm
 entities:
 - budget
@@ -34,7 +34,7 @@ slots:
     influence_conversation: true
 responses:
   utter_not_operation:
-  - text: We do not operate in that area yet.
+  - text: Sorry, we don't operate in this city. Can you please specify some other location
   utter_greet:
   - text: Hi there! How may I help you!
   - text: Hi there! What can I do for you!

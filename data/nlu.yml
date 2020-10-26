@@ -14,8 +14,6 @@ nlu:
     - good afternoon
     - hola
     - Hi
-    - mid
-    - [mid](budget)
 - intent: goodbye
   examples: |
     - cu
@@ -50,6 +48,14 @@ nlu:
     - not really
 - intent: restaurant_search
   examples: |
+    - In the range of [300-700]{"entity": "budget", "value": "mid"}
+    - More than [700]{"entity": "budget", "value": "high"}
+    - [>700]{"entity": "budget", "value": "high"}
+    - [<300]{"entity": "budget", "value": "low"}
+    - less than [300]{"entity": "budget", "value": "low"}
+    - less than [500]{"entity": "budget", "value": "mid"}
+    - less than [600]{"entity": "budget", "value": "mid"}
+    - less than [400]{"entity": "budget", "value": "mid"}
     - In the [mid](budget) range
     - In the [low](budget) range
     - In the [high](budget) range
@@ -120,7 +126,14 @@ nlu:
     - restaurants
     - [kanpur](location)
     - [chinese](cuisine) restaurants in [delhi](location)
-    - [high](budget)
+    - find me some restaurants
+    - [bhubaneswar](location)
+    - [South Indian](cuisine)
+    - [mid](budget)
+    - looking for restaurants
+    - [cuttack](location)
+    - [North Indian](cuisine)
+    - [low](budget)
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -137,6 +150,28 @@ nlu:
     - please do send me at [sushilk.bal@gmail.com](emailid)
     - [sbs@gmail.com](emailid)
     - please do send me at [sbc@gmail.com](emailid)
+    - [sm@gmail.com](emailid)
+- synonym: mid
+  examples: |
+    - 300-700
+    - 500
+    - 600
+    - 400
+    - moderate
+    - medium
+    - medium range
+- synonym: high
+  examples: |
+    - 700
+    - >700
+    - more than 700
+    - 1000
+- synonym: low
+  examples: |
+    - <300
+    - 300
+    - less than 300
+    - 200
 - synonym: bangalore
   examples: |
     - Bangalore
@@ -151,11 +186,6 @@ nlu:
     - New Delhi
     - Dili
     - Deli
-- synonym: mid
-  examples: |
-    - moderate
-    - medium
-    - medium range
 - synonym: '4'
   examples: |
     - four

@@ -104,6 +104,8 @@ class ActionCheckLocation(Action):
         locations =[city.lower() for city in cities]
         loc = tracker.get_slot('location')
         is_valid_city=loc.lower() in locations
+        if is_valid_city == False:
+            dispatcher.utter_message(template="utter_not_operation")
         return [SlotSet('check_op', is_valid_city)]
 
 base_url = "https://developers.zomato.com/api/v2.1/"
