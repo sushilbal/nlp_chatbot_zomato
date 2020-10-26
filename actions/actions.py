@@ -12,7 +12,6 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-
 class ActionSearchRestaurants(Action):
     def name(self):
         return 'action_search_restaurants'
@@ -29,26 +28,39 @@ class ActionSearchRestaurants(Action):
         lon = d1["location_suggestions"][0]["longitude"]
         cuisines_dict = {'chinese': 25, 'italian': 55,
                          'north indian': 50, 'south indian': 85, 'american': 1}
-        results = zomato.restaurant_search(
-            "", lat, lon, str(cuisines_dict.get(cuisine)), 20)
-        d = json.loads(results)
-        #result_by_price=[r for r in d['restaurants'] if r['restaurant']['average_cost_for_two'] < budget]
-        print(f' Budget for 2 ={budget}')
-        print(f'Cusisine = {cuisine}')
-        print(f'location = {loc}')
-        response = ""
-        if d['results_found'] == 0:
-            response = "no results"
+        results = zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 10)
+        res = json.loads(results)
+        low=[]
+        mid=[]
+        high=[]
+        if res['results_found'] > 0:
+            restaurants = res['restaurants']
+            for r in restaurants:
+                data='Found '+r['restaurant']['name']+' in '+r['restaurant']['location']['address']
+                print('Data ='+data)
+                #print(f"Found {r['restaurant']['name'] in r['restaurant']['location']['address']} and range is {r['restaurant']['average_cost_for_two']}")
+                if r['restaurant']['average_cost_for_two'] < 300 :
+                	low.append(data)
+                elif r['restaurant']['average_cost_for_two'] > 700:
+                    high.append(data)
+                else:
+                    mid.append(data)
+        response = []
+
+        if (budget == 'low') and (len(low) > 0):
+            response = low
+        elif (budget == 'mid') and (len(mid) > 0):
+            response = mid
+        elif (budget == 'high') and (len(high) > 0):
+            response = high
         else:
-            for restaurant in d['restaurants']:
-                response = response + "Found " + \
-                    restaurant['restaurant']['name'] + " in " + \
-                    restaurant['restaurant']['location']['address']+"\n"
-
-        dispatcher.utter_message(response)
-        return [SlotSet('response', response)]
+            response = ['No results Found !']
+        print (response)
+        dispatcher.utter_message("\n".join(response))
+        return [SlotSet('response', "\n".join(response))]
 
 
+    
 class ActionSendEmail(Action):
     def name(self):
         return "action_send_email"
@@ -89,18 +101,10 @@ class ActionCheckLocation(Action):
                   'Solapur', 'Srinagar', 'Surat', 'Thanjavur', 'Thiruvananthapuram', 'Thrissur', 'Tiruchirappalli', 'Tirunelveli',
                   'Ujjain', 'Bijapur', 'Vadodara', 'Varanasi', 'Vasai-Virar City', 'Vijayawada', 'Visakhapatnam', 'Vellore',
                   'Warangal']
+        locations =[city.lower() for city in cities]
         loc = tracker.get_slot('location')
-        if loc in cities:
-            if tracker.get_slot('cuisine') is None:
-                dispatcher.utter_message("utter_ask_cuisine",tracker)
-            elif tracker.get_slot('budger') is None:
-                dispatcher.utter_message("utter_ask_budget",tracker)
-            else:
-                dispatcher.utter_message("action_search_restaurants",tracker)
-        else:
-            dispatcher.utter_message("Not a valid city.",tracker)
-        
-
+        is_valid_city=loc.lower() in locations
+        return [SlotSet('check_op', is_valid_city)]
 
 base_url = "https://developers.zomato.com/api/v2.1/"
 
